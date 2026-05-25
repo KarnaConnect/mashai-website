@@ -389,6 +389,7 @@ export default function Home() {
           <a href="#pricing">Pricing</a>
           <a href="https://mashboard.karnaconnect.com.au/login">Sign In</a>
           <a href="https://mashboard.karnaconnect.com.au/onboarding">Get Started</a>
+          <a href="/terms">Terms & Conditions</a>
         </div>
         <div className="footer-copy">
           © 2026 Mash · A KarnaConnect product · ABN 84 924 272 443 · South Lake WA 6164
