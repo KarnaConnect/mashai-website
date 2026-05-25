@@ -180,8 +180,8 @@ export default function Home() {
           <a href="#faq">FAQ</a>
         </div>
         <div className="nav-cta">
-          <button className="btn-outline" onClick={() => window.location.href='https://mashboard.karnaconnect.com.au/login'}>Sign In</button>
-          <button className="btn-solid" onClick={() => window.location.href='https://mashboard.karnaconnect.com.au/onboarding'}>Start Free Trial</button>
+          <button className="btn-outline" onClick={() => window.location.href='https://dashboard.mashai.com.au/login'}>Sign In</button>
+          <button className="btn-solid" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>Start Free Trial</button>
         </div>
         <button className="hamburger" onClick={() => setMobileMenu(!mobileMenu)}>☰</button>
       </nav>
@@ -193,7 +193,7 @@ export default function Home() {
           <a href="#industries" onClick={() => setMobileMenu(false)}>Industries</a>
           <a href="#pricing" onClick={() => setMobileMenu(false)}>Pricing</a>
           <a href="#faq" onClick={() => setMobileMenu(false)}>FAQ</a>
-          <button className="mobile-menu-btn" onClick={() => window.location.href='https://mashboard.karnaconnect.com.au/onboarding'}>Start Free Trial →</button>
+          <button className="mobile-menu-btn" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>Start Free Trial →</button>
         </div>
       )}
 
@@ -204,7 +204,7 @@ export default function Home() {
           <h1 className="hero-title">Every call answered.<br/><span>Every lead captured.</span></h1>
           <p className="hero-sub">Mash is your always-on AI receptionist. It answers calls, captures details, summarises conversations and feeds everything into your live dashboard — 24/7.</p>
           <div className="hero-btns">
-            <button className="hero-btn-primary" onClick={() => window.location.href='https://mashboard.karnaconnect.com.au/onboarding'}>Start Free Trial →</button>
+            <button className="hero-btn-primary" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>Start Free Trial →</button>
             <button className="hero-btn-secondary" onClick={() => document.getElementById('how').scrollIntoView({behavior:'smooth'})}>See How It Works</button>
           </div>
           <div className="hero-stats">
@@ -327,7 +327,7 @@ export default function Home() {
                 </ul>
                 <button
                   className={`pricing-btn ${p.featured ? '' : 'outline'}`}
-                  onClick={() => window.location.href='https://mashboard.karnaconnect.com.au/onboarding'}
+                  onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}
                 >
                   Start Free Trial →
                 </button>
@@ -364,7 +364,7 @@ export default function Home() {
         <div className="section-inner">
           <h2 className="cta-title">Ready to never miss a call again?</h2>
           <p className="cta-sub">Join Australian businesses using Mash to capture every lead, 24 hours a day.</p>
-          <button className="cta-btn" onClick={() => window.location.href='https://mashboard.karnaconnect.com.au/onboarding'}>
+          <button className="cta-btn" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>
             Start Your Free Trial →
           </button>
         </div>
@@ -387,8 +387,8 @@ export default function Home() {
           <a href="#how">How it works</a>
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
-          <a href="https://mashboard.karnaconnect.com.au/login">Sign In</a>
-          <a href="https://mashboard.karnaconnect.com.au/onboarding">Get Started</a>
+          <a href="https://dashboard.mashai.com.au/login">Sign In</a>
+          <a href="https://dashboard.mashai.com.au/onboarding">Get Started</a>
           <a href="/terms">Terms & Conditions</a>
         </div>
         <div className="footer-copy">
