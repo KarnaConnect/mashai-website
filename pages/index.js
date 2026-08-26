@@ -1,5 +1,149 @@
 import { useState } from 'react'
 
+// SVG icon helpers
+const MicIcon = () => (
+  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+    <path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/>
+    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+    <line x1="12" y1="19" x2="12" y2="22"/>
+    <line x1="8" y1="22" x2="16" y2="22"/>
+  </svg>
+)
+
+const MenuIcon = () => (
+  <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" viewBox="0 0 24 24">
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="12" x2="21" y2="12"/>
+    <line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+)
+
+const ChevronIcon = ({ open }) => (
+  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"
+    style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', color: '#534AB7' }}>
+    <polyline points="6 9 12 15 18 9"/>
+  </svg>
+)
+
+const featureIcons = {
+  mic: (
+    <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/>
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+      <line x1="12" y1="19" x2="12" y2="22"/>
+      <line x1="8" y1="22" x2="16" y2="22"/>
+    </svg>
+  ),
+  fileText: (
+    <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="16" y1="13" x2="8" y2="13"/>
+      <line x1="16" y1="17" x2="8" y2="17"/>
+    </svg>
+  ),
+  zap: (
+    <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+    </svg>
+  ),
+  headphones: (
+    <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+      <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+    </svg>
+  ),
+  barChart: (
+    <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <line x1="18" y1="20" x2="18" y2="10"/>
+      <line x1="12" y1="20" x2="12" y2="4"/>
+      <line x1="6" y1="20" x2="6" y2="14"/>
+    </svg>
+  ),
+  bell: (
+    <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+  ),
+  smartphone: (
+    <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+      <line x1="12" y1="18" x2="12.01" y2="18"/>
+    </svg>
+  ),
+  link: (
+    <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+    </svg>
+  ),
+  shield: (
+    <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>
+  ),
+}
+
+const industryIcons = {
+  wrench: (
+    <svg width="26" height="26" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+    </svg>
+  ),
+  home: (
+    <svg width="26" height="26" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+  ),
+  building: (
+    <svg width="26" height="26" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/>
+      <path d="M2 22h20"/>
+      <path d="M9 7h1"/><path d="M9 11h1"/><path d="M9 15h1"/>
+      <path d="M14 7h1"/><path d="M14 11h1"/><path d="M14 15h1"/>
+    </svg>
+  ),
+  scale: (
+    <svg width="26" height="26" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <line x1="12" y1="3" x2="12" y2="21"/>
+      <path d="M5 3h14"/>
+      <path d="M4 21h16"/>
+      <path d="M5 3l-3 7h6l-3-7z"/>
+      <path d="M19 3l-3 7h6l-3-7z"/>
+    </svg>
+  ),
+  heart: (
+    <svg width="26" height="26" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </svg>
+  ),
+  dollarSign: (
+    <svg width="26" height="26" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <line x1="12" y1="1" x2="12" y2="23"/>
+      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+    </svg>
+  ),
+  scissors: (
+    <svg width="26" height="26" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <circle cx="6" cy="6" r="3"/>
+      <circle cx="6" cy="18" r="3"/>
+      <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+      <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+      <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+    </svg>
+  ),
+  utensils: (
+    <svg width="26" height="26" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+      <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+      <path d="M7 2v20"/>
+      <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>
+    </svg>
+  ),
+}
+
 export default function Home() {
   const [mobileMenu, setMobileMenu] = useState(false)
   const [faqOpen, setFaqOpen] = useState(null)
@@ -35,18 +179,18 @@ export default function Home() {
         .btn-outline:hover { background:#EEEDFE; }
         .btn-solid { padding:9px 20px; background:linear-gradient(135deg,#534AB7,#7F77DD); border:none; border-radius:8px; color:#fff; font-size:0.875rem; font-weight:700; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; box-shadow:0 4px 14px rgba(83,74,183,0.3); transition:opacity 0.2s; }
         .btn-solid:hover { opacity:0.9; }
-        .hamburger { display:none; background:none; border:none; cursor:pointer; font-size:1.4rem; color:#1a1535; }
+        .hamburger { display:none; background:none; border:none; cursor:pointer; color:#1a1535; padding:4px; }
 
         /* HERO */
         .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:120px 40px 80px; background:linear-gradient(160deg,#f0effe 0%,#ffffff 50%,#f0effe 100%); position:relative; overflow:hidden; }
         .hero::before { content:''; position:absolute; top:-200px; left:-200px; width:600px; height:600px; background:radial-gradient(circle,rgba(127,119,221,0.12) 0%,transparent 70%); }
         .hero::after { content:''; position:absolute; bottom:-200px; right:-200px; width:600px; height:600px; background:radial-gradient(circle,rgba(83,74,183,0.1) 0%,transparent 70%); }
         .hero-content { max-width:800px; position:relative; z-index:1; }
-        .hero-badge { display:inline-flex; align-items:center; gap:6px; background:#EEEDFE; border:1px solid #CECBF6; border-radius:20px; padding:6px 14px; font-size:0.78rem; font-weight:700; color:#534AB7; margin-bottom:24px; }
+        .hero-badge { display:inline-flex; align-items:center; gap:8px; background:#EEEDFE; border:1px solid #CECBF6; border-radius:20px; padding:7px 16px; font-size:0.78rem; font-weight:700; color:#534AB7; margin-bottom:28px; }
         .hero-title { font-size:clamp(2.4rem,6vw,4rem); font-weight:800; color:#1a1535; letter-spacing:-1.5px; line-height:1.1; margin-bottom:20px; }
         .hero-title span { color:#7F77DD; }
-        .hero-sub { font-size:1.15rem; color:#64748b; line-height:1.7; max-width:560px; margin:0 auto 36px; }
-        .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:48px; }
+        .hero-sub { font-size:1.15rem; color:#64748b; line-height:1.75; max-width:580px; margin:0 auto 36px; }
+        .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:56px; }
         .hero-btn-primary { padding:16px 32px; background:linear-gradient(135deg,#534AB7,#7F77DD); color:#fff; font-size:1rem; font-weight:700; border:none; border-radius:10px; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; box-shadow:0 6px 20px rgba(83,74,183,0.35); transition:opacity 0.2s; }
         .hero-btn-primary:hover { opacity:0.9; }
         .hero-btn-secondary { padding:16px 32px; background:#fff; color:#534AB7; font-size:1rem; font-weight:700; border:2px solid #534AB7; border-radius:10px; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; }
@@ -55,6 +199,8 @@ export default function Home() {
         .hero-stat { text-align:center; }
         .hero-stat-num { font-size:1.8rem; font-weight:800; color:#534AB7; letter-spacing:-0.5px; }
         .hero-stat-label { font-size:0.78rem; color:#94a3b8; margin-top:2px; }
+        .hero-stat.highlight .hero-stat-num { color:#1a1535; }
+        .hero-stat.highlight .hero-stat-label { color:#534AB7; font-weight:600; }
 
         /* SECTION */
         section { padding:80px 40px; }
@@ -75,16 +221,16 @@ export default function Home() {
         .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:48px; }
         .feature-card { background:#fff; border-radius:14px; padding:24px; border:1px solid #e2e8f5; box-shadow:0 1px 4px rgba(26,21,53,0.05); transition:transform 0.2s, box-shadow 0.2s; }
         .feature-card:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(83,74,183,0.1); }
-        .feature-icon { font-size:1.8rem; margin-bottom:14px; }
+        .feature-icon { width:44px; height:44px; background:#EEEDFE; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
         .feature-title { font-size:0.95rem; font-weight:700; color:#1a1535; margin-bottom:8px; }
         .feature-desc { font-size:0.84rem; color:#64748b; line-height:1.7; }
 
         /* INDUSTRIES */
         .industries { background:#f0effe; }
         .industry-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:40px; }
-        .industry-card { background:#fff; border-radius:12px; padding:20px; text-align:center; border:1px solid #CECBF6; transition:all 0.2s; cursor:default; }
+        .industry-card { background:#fff; border-radius:12px; padding:24px 20px; text-align:center; border:1px solid #CECBF6; transition:all 0.2s; cursor:default; }
         .industry-card:hover { border-color:#534AB7; background:#EEEDFE; }
-        .industry-icon { font-size:1.8rem; margin-bottom:10px; }
+        .industry-icon { display:flex; align-items:center; justify-content:center; width:52px; height:52px; background:#EEEDFE; border-radius:12px; margin:0 auto 12px; }
         .industry-name { font-size:0.84rem; font-weight:700; color:#1a1535; }
 
         /* PRICING */
@@ -112,18 +258,17 @@ export default function Home() {
         .faq { background:#f0effe; }
         .faq-list { max-width:720px; margin:40px auto 0; }
         .faq-item { background:#fff; border-radius:12px; margin-bottom:10px; border:1px solid #CECBF6; overflow:hidden; }
-        .faq-q { padding:18px 20px; font-size:0.95rem; font-weight:600; color:#1a1535; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+        .faq-q { padding:18px 20px; font-size:0.95rem; font-weight:600; color:#1a1535; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:12px; }
         .faq-q:hover { background:#EEEDFE; }
-        .faq-arrow { font-size:1rem; color:#534AB7; transition:transform 0.2s; }
-        .faq-arrow.open { transform:rotate(180deg); }
         .faq-a { padding:0 20px 18px; font-size:0.875rem; color:#64748b; line-height:1.7; }
 
         /* CTA */
         .cta-section { background:linear-gradient(135deg,#1a1535,#211a42); padding:80px 40px; text-align:center; }
         .cta-title { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; color:#fff; letter-spacing:-0.8px; margin-bottom:14px; }
-        .cta-sub { font-size:1rem; color:#AFA9EC; margin-bottom:36px; max-width:500px; margin-left:auto; margin-right:auto; }
+        .cta-sub { font-size:1rem; color:#AFA9EC; margin-bottom:36px; max-width:520px; margin-left:auto; margin-right:auto; }
         .cta-btn { display:inline-block; padding:16px 36px; background:linear-gradient(135deg,#7F77DD,#AFA9EC); color:#fff; font-size:1rem; font-weight:700; border:none; border-radius:10px; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; box-shadow:0 6px 20px rgba(127,119,221,0.4); transition:opacity 0.2s; }
         .cta-btn:hover { opacity:0.9; }
+        .cta-note { margin-top:16px; font-size:0.82rem; color:#6B63B5; }
 
         /* FOOTER */
         footer { background:#1a1535; padding:40px; text-align:center; }
@@ -183,7 +328,9 @@ export default function Home() {
           <button className="btn-outline" onClick={() => window.location.href='https://dashboard.mashai.com.au/login'}>Sign In</button>
           <button className="btn-solid" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>Start Free Trial</button>
         </div>
-        <button className="hamburger" onClick={() => setMobileMenu(!mobileMenu)}>☰</button>
+        <button className="hamburger" onClick={() => setMobileMenu(!mobileMenu)} aria-label="Menu">
+          <MenuIcon />
+        </button>
       </nav>
 
       {mobileMenu && (
@@ -200,9 +347,12 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-content">
-          <div className="hero-badge">🎙 AI Receptionist for Australian Businesses</div>
-          <h1 className="hero-title">Every call answered.<br/><span>Every lead captured.</span></h1>
-          <p className="hero-sub">Mash is your always-on AI receptionist. It answers calls, captures details, summarises conversations and feeds everything into your live dashboard — 24/7.</p>
+          <div className="hero-badge">
+            <MicIcon />
+            AI Receptionist for Australian Businesses
+          </div>
+          <h1 className="hero-title">Your business never sleeps.<br/><span>Neither does Mash.</span></h1>
+          <p className="hero-sub">While you're on the job, with a client, or off the clock — Mash picks up every call, captures every detail, and sends you a full summary the moment it hangs up. Zero missed leads.</p>
           <div className="hero-btns">
             <button className="hero-btn-primary" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>Start Free Trial →</button>
             <button className="hero-btn-secondary" onClick={() => document.getElementById('how').scrollIntoView({behavior:'smooth'})}>See How It Works</button>
@@ -210,7 +360,7 @@ export default function Home() {
           <div className="hero-stats">
             <div className="hero-stat"><div className="hero-stat-num">24/7</div><div className="hero-stat-label">Always answering</div></div>
             <div className="hero-stat"><div className="hero-stat-num">7 day</div><div className="hero-stat-label">Free trial</div></div>
-            <div className="hero-stat"><div className="hero-stat-num">100%</div><div className="hero-stat-label">Australian based</div></div>
+            <div className="hero-stat highlight"><div className="hero-stat-num">100%</div><div className="hero-stat-label">Australian based</div></div>
             <div className="hero-stat"><div className="hero-stat-num">$0</div><div className="hero-stat-label">Setup fee</div></div>
           </div>
         </div>
@@ -253,15 +403,15 @@ export default function Home() {
           </div>
           <div className="features-grid">
             {[
-              { icon: '🎙', title: 'Natural Australian Voice', desc: 'Your agent speaks with a natural Australian accent, warm and professional — callers feel right at home.' },
-              { icon: '📋', title: 'Full Call Transcripts', desc: 'Every conversation is transcribed word for word. Search, read and review any call at any time.' },
-              { icon: '⚡', title: 'AI Call Summaries', desc: 'After every call, Mash generates an intelligent summary so you know exactly what was discussed.' },
-              { icon: '🎵', title: 'Call Recordings', desc: 'Listen back to any call directly from your dashboard. Never lose important details again.' },
-              { icon: '📊', title: 'Live Dashboard', desc: 'See call volume, outcomes, peak hours and usage in real time. Available on desktop and mobile.' },
-              { icon: '🔔', title: 'Instant Notifications', desc: 'Get notified the moment a call ends with the summary and caller details sent straight to your inbox.' },
-              { icon: '📱', title: 'Mobile App', desc: 'Install Mash on your phone home screen for instant access to your dashboard anywhere, anytime.' },
-              { icon: '🔗', title: 'CRM Integration', desc: 'Connect Mash to your existing CRM — HubSpot, Salesforce, ServiceM8 and more. Data flows automatically.' },
-              { icon: '🛡', title: 'Australian Data Storage', desc: 'All your call data is stored securely in Australian data centres. Your clients\' privacy is protected.' },
+              { icon: featureIcons.mic, title: 'Natural Australian Voice', desc: 'Your agent speaks with a natural Australian accent, warm and professional — callers feel right at home.' },
+              { icon: featureIcons.fileText, title: 'Full Call Transcripts', desc: 'Every conversation is transcribed word for word. Search, read and review any call at any time.' },
+              { icon: featureIcons.zap, title: 'AI Call Summaries', desc: 'After every call, Mash generates an intelligent summary so you know exactly what was discussed.' },
+              { icon: featureIcons.headphones, title: 'Call Recordings', desc: 'Listen back to any call directly from your dashboard. Never lose important details again.' },
+              { icon: featureIcons.barChart, title: 'Live Dashboard', desc: 'See call volume, outcomes, peak hours and usage in real time. Available on desktop and mobile.' },
+              { icon: featureIcons.bell, title: 'Instant Notifications', desc: 'Get notified the moment a call ends with the summary and caller details sent straight to your inbox.' },
+              { icon: featureIcons.smartphone, title: 'Mobile Friendly', desc: 'Add Mash to your phone home screen for instant access to your dashboard anywhere, anytime.' },
+              { icon: featureIcons.link, title: 'CRM Integration', desc: 'Connect Mash to your existing CRM — HubSpot, Salesforce, ServiceM8 and more. Data flows automatically.' },
+              { icon: featureIcons.shield, title: 'Australian Data Storage', desc: 'All your call data is stored securely in Australian data centres. Your clients\' privacy is protected.' },
             ].map((f, i) => (
               <div key={i} className="feature-card">
                 <div className="feature-icon">{f.icon}</div>
@@ -283,14 +433,14 @@ export default function Home() {
           </div>
           <div className="industry-grid">
             {[
-              { icon: '🔧', name: 'Trades & Construction' },
-              { icon: '🏠', name: 'Real Estate' },
-              { icon: '🏗', name: 'Building Inspections' },
-              { icon: '⚖️', name: 'Legal Services' },
-              { icon: '🏥', name: 'Healthcare' },
-              { icon: '💰', name: 'Accounting & Finance' },
-              { icon: '✂️', name: 'Beauty & Wellness' },
-              { icon: '🍽', name: 'Hospitality' },
+              { icon: industryIcons.wrench, name: 'Trades & Construction' },
+              { icon: industryIcons.home, name: 'Real Estate' },
+              { icon: industryIcons.building, name: 'Building Inspections' },
+              { icon: industryIcons.scale, name: 'Legal Services' },
+              { icon: industryIcons.heart, name: 'Healthcare' },
+              { icon: industryIcons.dollarSign, name: 'Accounting & Finance' },
+              { icon: industryIcons.scissors, name: 'Beauty & Wellness' },
+              { icon: industryIcons.utensils, name: 'Hospitality' },
             ].map((ind, i) => (
               <div key={i} className="industry-card">
                 <div className="industry-icon">{ind.icon}</div>
@@ -350,7 +500,7 @@ export default function Home() {
               <div key={i} className="faq-item">
                 <div className="faq-q" onClick={() => setFaqOpen(faqOpen === i ? null : i)}>
                   {f.q}
-                  <span className={`faq-arrow ${faqOpen === i ? 'open' : ''}`}>▼</span>
+                  <ChevronIcon open={faqOpen === i} />
                 </div>
                 {faqOpen === i && <div className="faq-a">{f.a}</div>}
               </div>
@@ -362,11 +512,12 @@ export default function Home() {
       {/* CTA */}
       <section className="cta-section">
         <div className="section-inner">
-          <h2 className="cta-title">Ready to never miss a call again?</h2>
-          <p className="cta-sub">Join Australian businesses using Mash to capture every lead, 24 hours a day.</p>
+          <h2 className="cta-title">Stop losing leads to missed calls.</h2>
+          <p className="cta-sub">Every unanswered call is a missed opportunity. Join Australian businesses using Mash to capture every enquiry, 24 hours a day.</p>
           <button className="cta-btn" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>
             Start Your Free Trial →
           </button>
+          <p className="cta-note">7 days free · No setup fee · Cancel anytime</p>
         </div>
       </section>
 
