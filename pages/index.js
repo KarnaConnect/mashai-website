@@ -179,6 +179,9 @@ export default function Home() {
         .btn-outline:hover { background:#EEEDFE; }
         .btn-solid { padding:9px 20px; background:linear-gradient(135deg,#534AB7,#7F77DD); border:none; border-radius:8px; color:#fff; font-size:0.875rem; font-weight:700; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; box-shadow:0 4px 14px rgba(83,74,183,0.3); transition:opacity 0.2s; }
         .btn-solid:hover { opacity:0.9; }
+        .btn-call { display:inline-flex; align-items:center; gap:7px; padding:9px 18px; background:#f0effe; border:1.5px solid #CECBF6; border-radius:8px; color:#534AB7; font-size:0.875rem; font-weight:700; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; text-decoration:none; }
+        .btn-call:hover { background:#EEEDFE; border-color:#534AB7; }
+        .btn-call svg { flex-shrink:0; }
         .hamburger { display:none; background:none; border:none; cursor:pointer; color:#1a1535; padding:4px; }
 
         /* HERO */
@@ -325,6 +328,10 @@ export default function Home() {
           <a href="#faq">FAQ</a>
         </div>
         <div className="nav-cta">
+          <a className="btn-call" href="tel:+61876490208">
+            <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 6 6l1.27-.73a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call Mash
+          </a>
           <button className="btn-outline" onClick={() => window.location.href='https://dashboard.mashai.com.au/login'}>Sign In</button>
           <button className="btn-solid" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>Start Free Trial</button>
         </div>
@@ -355,7 +362,10 @@ export default function Home() {
           <p className="hero-sub">While you're on the job, with a client, or off the clock — Mash picks up every call, captures every detail, and sends you a full summary the moment it hangs up. Zero missed leads.</p>
           <div className="hero-btns">
             <button className="hero-btn-primary" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>Start Free Trial →</button>
-            <button className="hero-btn-secondary" onClick={() => document.getElementById('how').scrollIntoView({behavior:'smooth'})}>See How It Works</button>
+            <a className="hero-btn-secondary" href="tel:+61876490208" style={{display:'inline-flex',alignItems:'center',gap:'8px',textDecoration:'none'}}>
+              <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 6 6l1.27-.73a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call Mash Now
+            </a>
           </div>
           <div className="hero-stats">
             <div className="hero-stat"><div className="hero-stat-num">24/7</div><div className="hero-stat-label">Always answering</div></div>
