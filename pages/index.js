@@ -86,6 +86,25 @@ const featureIcons = {
   ),
 }
 
+const outboundIcon = (d) => (
+  <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">{d}</svg>
+)
+
+const outboundIcons = {
+  calendar: outboundIcon(<><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></>),
+  userPlus: outboundIcon(<><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></>),
+  clipboard: outboundIcon(<><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></>),
+  refresh: outboundIcon(<><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></>),
+}
+
+const PhoneOutgoingIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+    <polyline points="23 7 23 1 17 1"/>
+    <line x1="16" y1="8" x2="23" y2="1"/>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 6 6l1.27-.73a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </svg>
+)
+
 const industryIcons = {
   wrench: (
     <svg width="26" height="26" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -150,6 +169,7 @@ export default function Home() {
 
   const faqs = [
     { q: 'How quickly can I get started?', a: 'Most businesses are live within 24 hours. Fill in the onboarding form, we set up your AI agent, and your phone number is ready to go.' },
+    { q: 'Can Mash make calls as well as answer them?', a: 'Yes. Mash can ring your customers for appointment reminders and confirmations, new lead follow-ups, quote follow-ups and check-ins with customers you haven\'t seen in a while. It uses the same local voice, you get a summary of every call, and it uses the minutes already in your plan.' },
     { q: 'Do I need to install anything?', a: 'No. Mash works with your existing phone number or we provide you with a new Australian number. Nothing to install.' },
     { q: 'What happens if the AI can\'t answer a question?', a: 'Mash collects the caller\'s details and lets them know your team will follow up. You get an immediate notification with the full call summary.' },
     { q: 'Can I customise what the agent says?', a: 'Yes — during onboarding you define your agent\'s name, personality, services, FAQs and more. We train it specifically for your business.' },
@@ -228,6 +248,36 @@ export default function Home() {
         .feature-title { font-size:0.95rem; font-weight:700; color:#1a1535; margin-bottom:8px; }
         .feature-desc { font-size:0.84rem; color:#64748b; line-height:1.7; }
 
+        /* OUTBOUND */
+        .hero-new { display:inline-flex; align-items:center; gap:8px; margin:0 auto 18px; padding:6px 14px 6px 6px; background:#fff; border:1px solid #CECBF6; border-radius:20px; font-size:0.8rem; font-weight:600; color:#1a1535; box-shadow:0 2px 10px rgba(83,74,183,0.08); transition:border-color 0.2s; }
+        .hero-new:hover { border-color:#534AB7; }
+        .hero-new-tag { background:linear-gradient(135deg,#534AB7,#7F77DD); color:#fff; font-size:0.68rem; font-weight:800; letter-spacing:0.5px; text-transform:uppercase; padding:3px 9px; border-radius:12px; }
+        .hero-new-arrow { color:#534AB7; font-weight:700; }
+        .outbound { background:linear-gradient(135deg,#1a1535,#2a2160); color:#fff; }
+        .outbound .section-badge { background:rgba(127,119,221,0.18); border-color:rgba(175,169,236,0.35); color:#CECBF6; }
+        .outbound .section-title { color:#fff; }
+        .outbound .section-sub { color:#AFA9EC; }
+        .outbound-head { display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center; }
+        .outbound-points { list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:10px; }
+        .outbound-points li { display:flex; gap:10px; align-items:flex-start; font-size:0.9rem; color:#CECBF6; line-height:1.6; }
+        .outbound-points li span { color:#7F77DD; font-weight:800; }
+        .call-mock { background:#fff; border-radius:18px; padding:22px; color:#1a1535; box-shadow:0 20px 50px rgba(0,0,0,0.3); }
+        .call-mock-top { display:flex; align-items:center; gap:12px; padding-bottom:14px; border-bottom:1px solid #eef0f6; margin-bottom:14px; }
+        .call-mock-avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#534AB7,#7F77DD); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .call-mock-name { font-size:0.9rem; font-weight:700; }
+        .call-mock-status { font-size:0.75rem; color:#16a34a; font-weight:600; }
+        .call-bubble { font-size:0.82rem; line-height:1.55; padding:10px 13px; border-radius:12px; margin-bottom:8px; max-width:90%; }
+        .call-bubble.mash { background:#EEEDFE; color:#1a1535; border-bottom-left-radius:4px; }
+        .call-bubble.cust { background:#f1f5f9; color:#475569; margin-left:auto; border-bottom-right-radius:4px; }
+        .call-mock-summary { margin-top:12px; padding:12px; border-radius:10px; border:1px dashed #CECBF6; font-size:0.78rem; color:#475569; line-height:1.55; }
+        .call-mock-summary strong { color:#534AB7; }
+        .outbound-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:48px; }
+        .outbound-card { background:rgba(255,255,255,0.06); border:1px solid rgba(175,169,236,0.25); border-radius:14px; padding:22px; transition:background 0.2s, border-color 0.2s; }
+        .outbound-card:hover { background:rgba(255,255,255,0.1); border-color:#7F77DD; }
+        .outbound-card .feature-icon { background:#EEEDFE; }
+        .outbound-card-title { font-size:0.95rem; font-weight:700; color:#fff; margin-bottom:8px; }
+        .outbound-card-desc { font-size:0.84rem; color:#AFA9EC; line-height:1.65; }
+
         /* INDUSTRIES */
         .industries { background:#f0effe; }
         .industry-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:40px; }
@@ -296,6 +346,8 @@ export default function Home() {
           .hero { padding:100px 20px 60px; }
           .steps-grid { grid-template-columns:1fr; }
           .features-grid { grid-template-columns:1fr 1fr; }
+          .outbound-head { grid-template-columns:1fr; gap:32px; }
+          .outbound-grid { grid-template-columns:1fr 1fr; }
           .industry-grid { grid-template-columns:repeat(2,1fr); }
           .pricing-grid { grid-template-columns:1fr; }
           .cta-section { padding:60px 20px; }
@@ -303,6 +355,7 @@ export default function Home() {
         }
         @media (max-width:600px) {
           .features-grid { grid-template-columns:1fr; }
+          .outbound-grid { grid-template-columns:1fr; }
           .hero-stats { gap:24px; }
         }
       `}</style>
@@ -323,6 +376,7 @@ export default function Home() {
         <div className="nav-links">
           <a href="#how">How it works</a>
           <a href="#features">Features</a>
+          <a href="#outbound">Outbound calls</a>
           <a href="#industries">Industries</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
@@ -344,6 +398,7 @@ export default function Home() {
         <div className="mobile-menu">
           <a href="#how" onClick={() => setMobileMenu(false)}>How it works</a>
           <a href="#features" onClick={() => setMobileMenu(false)}>Features</a>
+          <a href="#outbound" onClick={() => setMobileMenu(false)}>Outbound calls</a>
           <a href="#industries" onClick={() => setMobileMenu(false)}>Industries</a>
           <a href="#pricing" onClick={() => setMobileMenu(false)}>Pricing</a>
           <a href="#faq" onClick={() => setMobileMenu(false)}>FAQ</a>
@@ -354,12 +409,18 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-content">
+          <a className="hero-new" href="#outbound">
+            <span className="hero-new-tag">New</span>
+            Mash makes calls now too
+            <span className="hero-new-arrow">→</span>
+          </a>
+          <br/>
           <div className="hero-badge">
             <MicIcon />
             AI Receptionist for Australian Businesses
           </div>
           <h1 className="hero-title">Your business never sleeps.<br/><span>Neither does Mash.</span></h1>
-          <p className="hero-sub">While you're on the job, with a client, or off the clock — Mash picks up every call, captures every detail, and sends you a full summary the moment it hangs up. Zero missed leads.</p>
+          <p className="hero-sub">While you're on the job, with a client, or off the clock — Mash picks up every call, captures every detail, and sends you a full summary the moment it hangs up. And now it makes your calls too: reminders, follow-ups and check-ins. Zero missed leads.</p>
           <div className="hero-btns">
             <button className="hero-btn-primary" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>Start Free Trial →</button>
             <a className="hero-btn-secondary" href="tel:+61876490208" style={{display:'inline-flex',alignItems:'center',gap:'8px',textDecoration:'none',fontFamily:"'Plus Jakarta Sans',sans-serif"}}>
@@ -433,6 +494,51 @@ export default function Home() {
         </div>
       </section>
 
+      {/* OUTBOUND CALLS */}
+      <section className="outbound" id="outbound">
+        <div className="section-inner">
+          <div className="outbound-head">
+            <div>
+              <div className="section-badge">New · Outbound calls</div>
+              <h2 className="section-title">Mash doesn't just answer the phone anymore</h2>
+              <p className="section-sub">Answering every call is half the job. The other half is the calls you're meant to make and never get to. Now Mash rings your customers for you.</p>
+              <ul className="outbound-points">
+                <li><span>✓</span>Same local voice your callers already hear</li>
+                <li><span>✓</span>A summary of every call, so you know who needs a personal follow-up</li>
+                <li><span>✓</span>Uses the minutes already in your plan</li>
+              </ul>
+            </div>
+            <div className="call-mock" aria-hidden="true">
+              <div className="call-mock-top">
+                <div className="call-mock-avatar"><PhoneOutgoingIcon size={18} /></div>
+                <div>
+                  <div className="call-mock-name">Mash is calling Sarah</div>
+                  <div className="call-mock-status">● Quote follow-up</div>
+                </div>
+              </div>
+              <div className="call-bubble mash">Hi Sarah, it's Mash from Coastal Plumbing. Just checking in on the quote we sent last week. Any questions I can help with?</div>
+              <div className="call-bubble cust">Yeah, actually. Could you do it next Thursday?</div>
+              <div className="call-bubble mash">Thursday works. I'll book you in for the morning and send a confirmation.</div>
+              <div className="call-mock-summary"><strong>Summary:</strong> Quote accepted. Job booked Thu 9am. No further action needed.</div>
+            </div>
+          </div>
+          <div className="outbound-grid">
+            {[
+              { icon: outboundIcons.calendar, title: 'Appointment reminders', desc: 'Mash calls the day before to confirm. If they can\'t make it, it moves them to another time so you can fill the slot.' },
+              { icon: outboundIcons.userPlus, title: 'New lead follow-up', desc: 'Ring new enquiries back while they\'re still keen, before they call the next business on Google.' },
+              { icon: outboundIcons.clipboard, title: 'Quote follow-ups', desc: 'Mash asks if they have any questions, books the job if they\'re ready, and tells you who needs a personal call.' },
+              { icon: outboundIcons.refresh, title: 'Win-back check-ins', desc: 'A friendly call to customers you haven\'t seen in a while. It books those who want to come back.' },
+            ].map((c, i) => (
+              <div key={i} className="outbound-card">
+                <div className="feature-icon">{c.icon}</div>
+                <div className="outbound-card-title">{c.title}</div>
+                <div className="outbound-card-desc">{c.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* INDUSTRIES */}
       <section className="industries" id="industries">
         <div className="section-inner">
@@ -471,9 +577,9 @@ export default function Home() {
           </div>
           <div className="pricing-grid">
             {[
-              { name: 'Basic', price: 149, minutes: 100, response: '24hr', features: ['100 minutes of AI call handling', '1 AI agent', '1 phone number', 'Live dashboard', 'Call recordings & transcripts', 'AI call summaries', 'Email notifications', '24hr support response'], featured: false },
-              { name: 'Standard', price: 299, minutes: 300, response: '12hr', features: ['300 minutes of AI call handling', '1 AI agent', '1 phone number', 'Live dashboard', 'Call recordings & transcripts', 'AI call summaries', 'Email notifications', 'Weekly call reports', 'Agent tuning included', '12hr support response'], featured: true },
-              { name: 'Premium', price: 699, minutes: 1000, response: '4hr', features: ['1000 minutes of AI call handling', 'Up to 3 AI agents', '3 phone numbers', 'Live dashboard', 'Call recordings & transcripts', 'AI call summaries', 'Email notifications', 'Daily call reports', 'CRM integration included', 'Unlimited agent tuning', '4hr support response'], featured: false },
+              { name: 'Basic', price: 149, minutes: 100, response: '24hr', features: ['100 minutes of AI call handling', '1 AI agent', 'Inbound & outbound calls', '1 phone number', 'Live dashboard', 'Call recordings & transcripts', 'AI call summaries', 'Email notifications', '24hr support response'], featured: false },
+              { name: 'Standard', price: 299, minutes: 300, response: '12hr', features: ['300 minutes of AI call handling', '1 AI agent', 'Inbound & outbound calls', '1 phone number', 'Live dashboard', 'Call recordings & transcripts', 'AI call summaries', 'Email notifications', 'Weekly call reports', 'Agent tuning included', '12hr support response'], featured: true },
+              { name: 'Premium', price: 699, minutes: 1000, response: '4hr', features: ['1000 minutes of AI call handling', 'Up to 3 AI agents', 'Inbound & outbound calls', '3 phone numbers', 'Live dashboard', 'Call recordings & transcripts', 'AI call summaries', 'Email notifications', 'Daily call reports', 'CRM integration included', 'Unlimited agent tuning', '4hr support response'], featured: false },
             ].map((p, i) => (
               <div key={i} className={`pricing-card ${p.featured ? 'featured' : ''}`}>
                 {p.featured && <div className="pricing-badge">Most Popular</div>}
@@ -523,7 +629,7 @@ export default function Home() {
       <section className="cta-section">
         <div className="section-inner">
           <h2 className="cta-title">Stop losing leads to missed calls.</h2>
-          <p className="cta-sub">Every unanswered call is a missed opportunity. Join Australian businesses using Mash to capture every enquiry, 24 hours a day.</p>
+          <p className="cta-sub">Every unanswered call is a missed opportunity. Join Australian businesses using Mash to capture every enquiry, 24 hours a day, and follow up every lead.</p>
           <button className="cta-btn" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>
             Start Your Free Trial →
           </button>
