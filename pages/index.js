@@ -86,16 +86,28 @@ const featureIcons = {
   ),
 }
 
-const outboundIcon = (d) => (
+const callIcon = (d) => (
   <svg width="22" height="22" fill="none" stroke="#534AB7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">{d}</svg>
 )
 
-const outboundIcons = {
-  calendar: outboundIcon(<><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></>),
-  userPlus: outboundIcon(<><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></>),
-  clipboard: outboundIcon(<><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></>),
-  refresh: outboundIcon(<><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></>),
+const callIcons = {
+  calendar: callIcon(<><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></>),
+  userPlus: callIcon(<><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></>),
+  clipboard: callIcon(<><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></>),
+  clock: callIcon(<><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></>),
+  check: callIcon(<><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></>),
+  help: callIcon(<><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></>),
+  alert: callIcon(<><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></>),
+  refresh: callIcon(<><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></>),
 }
+
+const PhoneIncomingIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+    <polyline points="16 2 16 8 22 8"/>
+    <line x1="23" y1="1" x2="16" y2="8"/>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 6 6l1.27-.73a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </svg>
+)
 
 const PhoneOutgoingIcon = ({ size = 16 }) => (
   <svg width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -248,35 +260,25 @@ export default function Home() {
         .feature-title { font-size:0.95rem; font-weight:700; color:#1a1535; margin-bottom:8px; }
         .feature-desc { font-size:0.84rem; color:#64748b; line-height:1.7; }
 
-        /* OUTBOUND */
-        .hero-new { display:inline-flex; align-items:center; gap:8px; margin:0 auto 18px; padding:6px 14px 6px 6px; background:#fff; border:1px solid #CECBF6; border-radius:20px; font-size:0.8rem; font-weight:600; color:#1a1535; box-shadow:0 2px 10px rgba(83,74,183,0.08); transition:border-color 0.2s; }
-        .hero-new:hover { border-color:#534AB7; }
-        .hero-new-tag { background:linear-gradient(135deg,#534AB7,#7F77DD); color:#fff; font-size:0.68rem; font-weight:800; letter-spacing:0.5px; text-transform:uppercase; padding:3px 9px; border-radius:12px; }
-        .hero-new-arrow { color:#534AB7; font-weight:700; }
-        .outbound { background:linear-gradient(135deg,#1a1535,#2a2160); color:#fff; }
-        .outbound .section-badge { background:rgba(127,119,221,0.18); border-color:rgba(175,169,236,0.35); color:#CECBF6; }
-        .outbound .section-title { color:#fff; }
-        .outbound .section-sub { color:#AFA9EC; }
-        .outbound-head { display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center; }
-        .outbound-points { list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:10px; }
-        .outbound-points li { display:flex; gap:10px; align-items:flex-start; font-size:0.9rem; color:#CECBF6; line-height:1.6; }
-        .outbound-points li span { color:#7F77DD; font-weight:800; }
-        .call-mock { background:#fff; border-radius:18px; padding:22px; color:#1a1535; box-shadow:0 20px 50px rgba(0,0,0,0.3); }
-        .call-mock-top { display:flex; align-items:center; gap:12px; padding-bottom:14px; border-bottom:1px solid #eef0f6; margin-bottom:14px; }
-        .call-mock-avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#534AB7,#7F77DD); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-        .call-mock-name { font-size:0.9rem; font-weight:700; }
-        .call-mock-status { font-size:0.75rem; color:#16a34a; font-weight:600; }
-        .call-bubble { font-size:0.82rem; line-height:1.55; padding:10px 13px; border-radius:12px; margin-bottom:8px; max-width:90%; }
-        .call-bubble.mash { background:#EEEDFE; color:#1a1535; border-bottom-left-radius:4px; }
-        .call-bubble.cust { background:#f1f5f9; color:#475569; margin-left:auto; border-bottom-right-radius:4px; }
-        .call-mock-summary { margin-top:12px; padding:12px; border-radius:10px; border:1px dashed #CECBF6; font-size:0.78rem; color:#475569; line-height:1.55; }
-        .call-mock-summary strong { color:#534AB7; }
-        .outbound-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:48px; }
-        .outbound-card { background:rgba(255,255,255,0.06); border:1px solid rgba(175,169,236,0.25); border-radius:14px; padding:22px; transition:background 0.2s, border-color 0.2s; }
-        .outbound-card:hover { background:rgba(255,255,255,0.1); border-color:#7F77DD; }
-        .outbound-card .feature-icon { background:#EEEDFE; }
-        .outbound-card-title { font-size:0.95rem; font-weight:700; color:#fff; margin-bottom:8px; }
-        .outbound-card-desc { font-size:0.84rem; color:#AFA9EC; line-height:1.65; }
+        /* INBOUND & OUTBOUND */
+        .calls { background:linear-gradient(135deg,#1a1535,#2a2160); color:#fff; }
+        .calls .section-badge { background:rgba(127,119,221,0.18); border-color:rgba(175,169,236,0.35); color:#CECBF6; }
+        .calls .section-title { color:#fff; }
+        .calls .section-sub { color:#AFA9EC; }
+        .calls-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
+        .calls-panel { background:rgba(255,255,255,0.06); border:1px solid rgba(175,169,236,0.25); border-radius:18px; padding:32px; }
+        .calls-panel-head { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+        .calls-panel-icon { width:48px; height:48px; border-radius:12px; background:linear-gradient(135deg,#534AB7,#7F77DD); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .calls-panel-label { font-size:0.72rem; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:#AFA9EC; }
+        .calls-panel-title { font-size:1.3rem; font-weight:800; color:#fff; letter-spacing:-0.3px; }
+        .calls-panel-desc { font-size:0.9rem; color:#AFA9EC; line-height:1.7; margin-bottom:22px; }
+        .calls-list { list-style:none; display:flex; flex-direction:column; gap:16px; }
+        .calls-list li { display:flex; gap:14px; align-items:flex-start; }
+        .calls-list .feature-icon { width:40px; height:40px; margin:0; flex-shrink:0; }
+        .calls-item-title { font-size:0.92rem; font-weight:700; color:#fff; margin-bottom:3px; }
+        .calls-item-desc { font-size:0.83rem; color:#AFA9EC; line-height:1.6; }
+        .calls-foot { margin-top:28px; text-align:center; font-size:0.9rem; color:#CECBF6; }
+        .calls-foot strong { color:#fff; }
 
         /* INDUSTRIES */
         .industries { background:#f0effe; }
@@ -346,8 +348,8 @@ export default function Home() {
           .hero { padding:100px 20px 60px; }
           .steps-grid { grid-template-columns:1fr; }
           .features-grid { grid-template-columns:1fr 1fr; }
-          .outbound-head { grid-template-columns:1fr; gap:32px; }
-          .outbound-grid { grid-template-columns:1fr 1fr; }
+          .calls-grid { grid-template-columns:1fr; }
+          .calls-panel { padding:24px; }
           .industry-grid { grid-template-columns:repeat(2,1fr); }
           .pricing-grid { grid-template-columns:1fr; }
           .cta-section { padding:60px 20px; }
@@ -355,7 +357,6 @@ export default function Home() {
         }
         @media (max-width:600px) {
           .features-grid { grid-template-columns:1fr; }
-          .outbound-grid { grid-template-columns:1fr; }
           .hero-stats { gap:24px; }
         }
       `}</style>
@@ -375,8 +376,8 @@ export default function Home() {
         </div>
         <div className="nav-links">
           <a href="#how">How it works</a>
+          <a href="#calls">Inbound & outbound</a>
           <a href="#features">Features</a>
-          <a href="#outbound">Outbound calls</a>
           <a href="#industries">Industries</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
@@ -397,8 +398,8 @@ export default function Home() {
       {mobileMenu && (
         <div className="mobile-menu">
           <a href="#how" onClick={() => setMobileMenu(false)}>How it works</a>
+          <a href="#calls" onClick={() => setMobileMenu(false)}>Inbound & outbound</a>
           <a href="#features" onClick={() => setMobileMenu(false)}>Features</a>
-          <a href="#outbound" onClick={() => setMobileMenu(false)}>Outbound calls</a>
           <a href="#industries" onClick={() => setMobileMenu(false)}>Industries</a>
           <a href="#pricing" onClick={() => setMobileMenu(false)}>Pricing</a>
           <a href="#faq" onClick={() => setMobileMenu(false)}>FAQ</a>
@@ -409,18 +410,12 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-content">
-          <a className="hero-new" href="#outbound">
-            <span className="hero-new-tag">New</span>
-            Mash makes calls now too
-            <span className="hero-new-arrow">→</span>
-          </a>
-          <br/>
           <div className="hero-badge">
             <MicIcon />
             AI Receptionist for Australian Businesses
           </div>
           <h1 className="hero-title">Your business never sleeps.<br/><span>Neither does Mash.</span></h1>
-          <p className="hero-sub">While you're on the job, with a client, or off the clock — Mash picks up every call, captures every detail, and sends you a full summary the moment it hangs up. And now it makes your calls too: reminders, follow-ups and check-ins. Zero missed leads.</p>
+          <p className="hero-sub">While you're on the job, with a client, or off the clock — Mash picks up every call, captures every detail, and sends you a full summary the moment it hangs up. It makes your calls too: reminders, follow-ups and check-ins. Zero missed leads.</p>
           <div className="hero-btns">
             <button className="hero-btn-primary" onClick={() => window.location.href='https://dashboard.mashai.com.au/onboarding'}>Start Free Trial →</button>
             <a className="hero-btn-secondary" href="tel:+61876490208" style={{display:'inline-flex',alignItems:'center',gap:'8px',textDecoration:'none',fontFamily:"'Plus Jakarta Sans',sans-serif"}}>
@@ -465,6 +460,56 @@ export default function Home() {
         </div>
       </section>
 
+      {/* INBOUND & OUTBOUND */}
+      <section className="calls" id="calls">
+        <div className="section-inner">
+          <div style={{textAlign:'center'}}>
+            <div className="section-badge">Inbound & outbound</div>
+            <h2 className="section-title">Every call in. Every call out.</h2>
+            <p className="section-sub" style={{margin:'0 auto'}}>Mash answers the calls you can't get to and makes the calls you never have time for, in the same local voice.</p>
+          </div>
+          <div className="calls-grid">
+            {[
+              { icon: <PhoneIncomingIcon size={22} />, label: 'Inbound', title: 'Answers your calls', desc: 'Every call picked up on the first ring, day or night, even when three people ring at once.', items: [
+                { icon: callIcons.clock, title: '24/7 call answering', desc: 'On the job, with a client or closed for the night, every caller gets a friendly answer.' },
+                { icon: callIcons.check, title: 'Bookings and enquiries', desc: 'Takes the details, books the job or appointment and captures every lead.' },
+                { icon: callIcons.help, title: 'Answers common questions', desc: 'Hours, services, pricing and anything else you train it on.' },
+                { icon: callIcons.alert, title: 'Flags what\'s urgent', desc: 'Urgent calls and anything it can\'t handle are sent straight to you with the full summary.' },
+              ]},
+              { icon: <PhoneOutgoingIcon size={22} />, label: 'Outbound', title: 'Makes your calls', desc: 'The calls that bring in revenue but get dropped in a busy week, made for you.', items: [
+                { icon: callIcons.calendar, title: 'Appointment reminders', desc: 'Calls the day before to confirm, and moves anyone who can\'t make it so you can fill the slot.' },
+                { icon: callIcons.userPlus, title: 'New lead follow-up', desc: 'Rings new enquiries back while they\'re still keen.' },
+                { icon: callIcons.clipboard, title: 'Quote follow-ups', desc: 'Answers their questions, books the job if they\'re ready, and tells you who needs a personal call.' },
+                { icon: callIcons.refresh, title: 'Win-back check-ins', desc: 'A friendly call to customers you haven\'t seen in a while.' },
+              ]},
+            ].map((panel, i) => (
+              <div key={i} className="calls-panel">
+                <div className="calls-panel-head">
+                  <div className="calls-panel-icon">{panel.icon}</div>
+                  <div>
+                    <div className="calls-panel-label">{panel.label}</div>
+                    <div className="calls-panel-title">{panel.title}</div>
+                  </div>
+                </div>
+                <p className="calls-panel-desc">{panel.desc}</p>
+                <ul className="calls-list">
+                  {panel.items.map((it, j) => (
+                    <li key={j}>
+                      <div className="feature-icon">{it.icon}</div>
+                      <div>
+                        <div className="calls-item-title">{it.title}</div>
+                        <div className="calls-item-desc">{it.desc}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="calls-foot"><strong>One agent, one plan.</strong> Every call, in or out, comes with a summary and uses the minutes in your plan.</p>
+        </div>
+      </section>
+
       {/* FEATURES */}
       <section id="features">
         <div className="section-inner">
@@ -488,51 +533,6 @@ export default function Home() {
                 <div className="feature-icon">{f.icon}</div>
                 <div className="feature-title">{f.title}</div>
                 <div className="feature-desc">{f.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* OUTBOUND CALLS */}
-      <section className="outbound" id="outbound">
-        <div className="section-inner">
-          <div className="outbound-head">
-            <div>
-              <div className="section-badge">New · Outbound calls</div>
-              <h2 className="section-title">Mash doesn't just answer the phone anymore</h2>
-              <p className="section-sub">Answering every call is half the job. The other half is the calls you're meant to make and never get to. Now Mash rings your customers for you.</p>
-              <ul className="outbound-points">
-                <li><span>✓</span>Same local voice your callers already hear</li>
-                <li><span>✓</span>A summary of every call, so you know who needs a personal follow-up</li>
-                <li><span>✓</span>Uses the minutes already in your plan</li>
-              </ul>
-            </div>
-            <div className="call-mock" aria-hidden="true">
-              <div className="call-mock-top">
-                <div className="call-mock-avatar"><PhoneOutgoingIcon size={18} /></div>
-                <div>
-                  <div className="call-mock-name">Mash is calling Sarah</div>
-                  <div className="call-mock-status">● Quote follow-up</div>
-                </div>
-              </div>
-              <div className="call-bubble mash">Hi Sarah, it's Mash from Coastal Plumbing. Just checking in on the quote we sent last week. Any questions I can help with?</div>
-              <div className="call-bubble cust">Yeah, actually. Could you do it next Thursday?</div>
-              <div className="call-bubble mash">Thursday works. I'll book you in for the morning and send a confirmation.</div>
-              <div className="call-mock-summary"><strong>Summary:</strong> Quote accepted. Job booked Thu 9am. No further action needed.</div>
-            </div>
-          </div>
-          <div className="outbound-grid">
-            {[
-              { icon: outboundIcons.calendar, title: 'Appointment reminders', desc: 'Mash calls the day before to confirm. If they can\'t make it, it moves them to another time so you can fill the slot.' },
-              { icon: outboundIcons.userPlus, title: 'New lead follow-up', desc: 'Ring new enquiries back while they\'re still keen, before they call the next business on Google.' },
-              { icon: outboundIcons.clipboard, title: 'Quote follow-ups', desc: 'Mash asks if they have any questions, books the job if they\'re ready, and tells you who needs a personal call.' },
-              { icon: outboundIcons.refresh, title: 'Win-back check-ins', desc: 'A friendly call to customers you haven\'t seen in a while. It books those who want to come back.' },
-            ].map((c, i) => (
-              <div key={i} className="outbound-card">
-                <div className="feature-icon">{c.icon}</div>
-                <div className="outbound-card-title">{c.title}</div>
-                <div className="outbound-card-desc">{c.desc}</div>
               </div>
             ))}
           </div>
