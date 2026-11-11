@@ -636,7 +636,7 @@ export default function Home() {
           <p className="cta-note">7 days free · No setup fee · Cancel anytime</p>
           <p style={{marginTop:'24px',fontSize:'1rem',color:'#AFA9EC'}}>
             Or call us and speak to Mash right now —{' '}
-            <a href="tel:+61874900208" style={{color:'#fff',fontWeight:'700',textDecoration:'none'}}>+61 8 7649 0208</a>
+            <a href="tel:+61876490208" style={{color:'#fff',fontWeight:'700',textDecoration:'none'}}>+61 8 7649 0208</a>
           </p>
         </div>
       </section>
